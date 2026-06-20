@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Story Vending Machine</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="page">
+    <section class="machine" id="machine" aria-label="The Story Vending Machine">
+      <div class="machine__art" aria-hidden="true"></div>
+
+      <div class="machine__frame">
+        <section class="screen" aria-live="polite">
+          <div class="screen__lights screen__lights--top" aria-hidden="true"></div>
+          <div class="screen__lights screen__lights--right" aria-hidden="true"></div>
+          <div class="screen__lights screen__lights--bottom" aria-hidden="true"></div>
+          <div class="screen__lights screen__lights--left" aria-hidden="true"></div>
+
+          <div class="view view--idle" data-view="idle">
+            <div class="idle-card">
+              <p class="idle-card__eyebrow">WELCOME</p>
+              <h2 class="idle-card__title">INSERT COIN</h2>
+              <p class="idle-card__copy">一枚硬币，一段故事.</p>
+            </div>
+          </div>
+
+          <div class="view view--boot" data-view="boot" hidden>
+            <div class="boot-card">
+              <p class="boot-card__title" id="bootTitle"></p>
+              <p class="boot-card__subtitle" id="bootSubtitle"></p>
+            </div>
+          </div>
+
+          <div class="view view--chat" data-view="chat" hidden>
+            <div class="chat-shell">
+              <div class="chat-log" id="chatLog"></div>
+            </div>
+          </div>
+
+          <div class="view view--complete" data-view="complete" hidden>
+            <div class="complete-card">
+              <p class="complete-card__eyebrow">END OF LINE</p>
+              <h2 class="complete-card__title">STORY COMPLETE</h2>
+              <p class="complete-card__copy">随着机器发出的光黯淡下来，屏幕后面的故事也随之沉默.</p>
+            </div>
+          </div>
+        </section>
+
+        <aside class="panel" aria-label="Machine controls">
+          <p class="panel__eyebrow">故事自动贩卖机</p>
+          <h1 class="panel__title" id="storyTitle">The Story Vending Machine</h1>
+
+          <div class="counter" id="coinCounter">COINS: 1</div>
+
+          <button class="machine-button machine-button--coin" id="coinButton" type="button">
+            <span class="machine-button__art" aria-hidden="true"></span>
+            <span class="machine-button__label">投币</span>
+          </button>
+
+          <button class="machine-button machine-button--next" id="nextButton" type="button" disabled>
+            <span class="machine-button__art" aria-hidden="true"></span>
+            <span class="machine-button__label">继续</span>
+          </button>
+
+          <p class="panel__hint" id="panelHint">一枚硬币仅供游玩一次，投币后概不退款。</p>
+
+          <div class="panel__footer">
+            <button class="reset-button" id="resetButton" type="button">RESET</button>
+          </div>
+        </aside>
+      </div>
+
+      <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+    </section>
+  </main>
+
+  <script type="module" src="./script.js"></script>
+</body>
+</html>

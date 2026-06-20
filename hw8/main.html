@@ -1,86 +1,490 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <title>Home | Akademiya</title>
     <meta charset="utf-8">
-    <title>My Site</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-
-    <!-- Link Swiper's CSS -->
-    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/3.3.1/css/swiper.css">
-	      
-
-    <!-- Demo styles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-    html, body {
-        position: relative;
-        height: 100%;
-    }
-    body {
-        background: #eee;
-        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-        font-size: 14px;
-        color:#000;
-        margin: 0;
-        padding: 0;
-    }
-    .swiper-container {
-        /*width: 100%;
-        height: 100%;
-		*/
-		width: 800px;
-		height: 400px;
-		margin: 0 auto;
-        
-    }
-    .swiper-slide {
-        text-align: center;
-        font-size: 18px;
-        background: #fff;
-        
-        /* Center slide text vertically */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+        }
+
+        header {
+            background-color: #09464b;
+            padding: 5px;
+            padding-right: 5%;
+            text-align: right;
+            color: #aac9ce;
+            width: 100%;
+            display: inline-block;
+        }
+        nav {
+            float: right;
+            background: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+        nav.head{
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background: white;
+            z-index: 100;
+            background-image: url("Akademiya_Emblem_back.png");
+            background-attachment: local;
+            background-repeat: no-repeat;
+        }
+        nav.side1, .side2{
+            position: fixed;
+            padding: 10px;
+            right: 0;
+            bottom: 280px;
+            height: 100px;
+            width: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #09464b;
+            z-index: 100;
+            text-align: center;
+            transition: all 0.3s ease;
+            color: white;
+            display: inline-block;
+            border: non;
+        }
+        .side1:hover, .side2:hover{
+            width: 105px;
+        }
+        nav.side2{
+            bottom: 400px;
+        }
+        header span:hover{
+		color: white;
+	    }
+        .name{
+            display: inline-block;
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+        #school_name{
+            font-size: 150%;
+            font-family: 'SimSun';
+            margin: 0;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 10%;
+            margin-right: 0%;
+        }
+        li {
+            margin: 10px;
+        }
+
+        .article {
+            display: block;
+            height: 400px;
+            float: left;
+            padding: 20px;
+            width: 70%;
+            background-color:#aac9ce;
+        }
+        .article-title{
+            float: right;
+            height: 200px;
+            width: 30%;
+            padding-top: 50px;
+            background-color: rgba(170,201,206,0.8);
+            border-bottom: none;
+            display: block;
+            text-align: center;
+            transition: all 0.5s ease;
+            font-family: 'PMingLiU','MingLiU';
+        }
+        section::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .footer {
+            background-color: #09464b;
+            padding: 5px;
+            text-align: center;
+            color: #aac9ce;
+            background-image: url("Sumeru_City.png");
+            background-attachment: local;
+            background-blend-mode:overlay;
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: bottom;
+            bottom: 0;
+            display: inline-flex;
+            height: 40%;
+            width: 100%;
+        }
+        .caption {
+            color: #f2f2f2;
+            font-size: 20px;
+            padding: 8px 20px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+            font-family: 'Microsoft YaHei';
+        }
+        .subheader{
+            text-align: center;
+            font-family: 'SimSun';
+            margin: 80px 0 60px 0;
+            font-size: 280%;
+        }
+        .mySlides {
+            display: none
+        }
+        .slider {
+            position: relative;
+        }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+        }
+
+        .next {
+            right: 0;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(38, 58, 47, 0.8);
+        }
+
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+            from {opacity: .7} 
+            to {opacity: 1}
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            grid-gap: 2px;
+            background-color: #aac9ce;
+            padding: 2px;
+            margin-left: 10%;
+            margin-right: 10%;
+            font-family: 'SimSun', 'Verdana', Times, serif;
+        }
+        .grid-item {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .grid-item:hover{
+            transform: scale(1.05);
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        .toptitle{
+            margin-left: 10px;
+            margin-right: 10px;
+            font-size: 120%;
+        }
+        .toptitle:hover{
+            color: #09464b;
+            border-bottom: 2px solid #09464b;
+        }
+        .sidetext{
+            font-size: 120%;
+            font-weight: bold;
+            padding: 0;
+            margin: 0;
+            vertical-align: middle;
+            width: 100%;
+            height: 100%;
+        }
+        #mytext{
+            margin: 10%;
+            font-size: 150%;
+            font-weight: bold;
+            vertical-align: middle;
+            line-height: 1.5;
+            font-family: 'PMingLiU','MingLiU';
+            color: white;
+        }
+        .article-title:hover{
+            background-color: rgba(170,201,206,0.6);
+            transform: scale(0.95);
+        }
+        .imgline{
+            margin: 20px 60px 20px 60px;
+            overflow: hidden;
+            height: 200px;
+            background-color: #09464b;
+        }
+        .mask{
+            position: absolute; 
+            background-color: rgba(255, 255, 255, 0);
+            z-index: 10;
+            width: 100%;
+            height: 200px;
+            padding: 30px;
+
+            color: rgba(255, 255, 255, 0);
+            transition: all 0.5s ease-in-out;
+        }
+        .mask:hover{
+            background-color: rgba(255, 255, 255, 0.5);
+            color: #09464b;
+        }
+        .imgcaption{
+            margin: 30px;
+        }
+        button{
+            background-color: unset;
+            border: none;
+            cursor: pointer;
+        }
+        .search{
+            color: #aac9ce;
+        }
+        #txtfield{
+            display: none;
+            background-color: #aac9ce;
+            border: none;
+            outline: none;
+            color: #09464b;
+            width: 200px;
+            height: 30px;
+            border-radius: 5px;
+            padding: 2px;
+            margin: 0;
+        }
+        .more{
+            color: #000;
+            font-size: 120%;
+            float: right;
+        }
+        .more:hover{
+            color: #6a6a6a;
+        }
+        .fullscreen{
+            width: 100%;
+            height: 100%;
+            top: 10%;
+            position: fixed;
+            z-index: 10;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .fullscreen h1{
+            color: #fff;
+        }
+        .dropdown{
+            position: fixed;
+            z-index: 100;
+            width: 100%;
+            top: 20%;
+            padding: 0;
+        }
+        .drop{
+            position: fixed;
+            top: 22%;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.5);
+            background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6));
+            padding: 30px;
+            display: none;
+            color: #09464b;
+            text-align: center;
+        }
     </style>
 </head>
+
 <body>
-   <!-- Swiper -->
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">Slide 1</div>
-            <div class="swiper-slide">Slide 2</div>
-            <div class="swiper-slide">Slide 3</div>
-            <div class="swiper-slide">Slide 4</div>
-            <div class="swiper-slide">Slide 5</div>
-            <div class="swiper-slide">Slide 6</div>
-            <div class="swiper-slide">Slide 7</div>
-            <div class="swiper-slide">Slide 8</div>
-            <div class="swiper-slide">Slide 9</div>
-            <div class="swiper-slide">Slide 10</div>
+    <script src="https://kit.fontawesome.com/befbfc80f3.js" crossorigin="anonymous"></script>
+    <header>
+        <p><span>学院主页</span> | <span>教育基金会</span> | <span>贤者团</span> | 
+            <input type="text" id="txtfield">
+            <button class="search"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </p>
+    <script src="jquery.js"></script>
+    </header>
+    <nav class="head">
+        <div style="display: inline; vertical-align: middle; padding-left: 24px;"><img src="Akademiya_Emblem.png"
+                width="58px"></div>
+        <div class="name">
+            <p id="school_name">须弥教令院</p>
+            <p style="margin: 0; font-family: 'Times New Roman', Times, serif;">Sumeru Akademiya</p>
         </div>
-        <!-- Add Pagination -->
-        <div class="swiper-pagination"></div>
-        <!-- Add Arrows -->
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
+        <div style="display: inline; vertical-align: middle; float: right;margin-right: 24px;">
+            <br>
+            <span>
+                <span class="toptitle">本科教育</span>
+                <div class="drop">本科教育相关</div>
+                <span class="toptitle">科研成果</span>
+                <div class="drop">科研成果相关</div>
+                <span class="toptitle">行政管理</span>
+                <div class="drop">行政管理相关</div>
+                <span class="toptitle">国际合作</span>
+                <div class="drop">国际合作相关</div>
+                <span class="toptitle">沙漠援助计划</span>
+                <div class="drop">沙漠援助计划相关</div>
+                <button class="more"> <i class="fa-solid fa-bars"></i></a>
+            </span>
+        </div>
+    </nav>
+    <script>
+        $(function () {
+            $(".fullscreen").toggle();
+
+            $("button.more").on("click", function () {
+                $(".fullscreen").slideToggle(500);
+            });
+            $("button.search").on("click", function () {
+                $(this).prev().toggle(300);
+            });
+            $(".mask").mouseenter(function () {
+                $(this).next().animate(
+                    {width: "110%" }, 300);
+            });
+            $(".mask").mouseleave(function () {
+                $(this).next().animate(
+                    { width: "100%" }, 300);
+            });
+            $(".toptitle").mouseover(function () {
+                $(this).next().slideDown(300);
+            })
+            $(".toptitle").mouseout(function () {
+                $(this).next().slideUp(300);
+            })
+        });
+    </script>
+    <nav class="side1"><img src="brochure.png" width="50%"><p class="sidetext">招生简章</p></nav>
+    <nav class="side2"><img src="email.png" width="50%"><p class="sidetext">联系我们</p></nav>
+<div class="slider">
+
+    <div class="mySlides fade">
+        <img src="parade.png" style="width:100%">
+        <div class="caption">第一届学院争霸赛顺利举行</div>
     </div>
 
-    <!-- Swiper JS -->
+    <div class="mySlides fade">
+        <img src="graduates.png" style="width:100%">
+        <div class="caption">2023年度优秀毕业生名单公布</div>
+    </div>
 
-	<script src="https://cdn.bootcdn.net/ajax/libs/Swiper/3.3.1/js/swiper.js"> </script>
+    <div class="mySlides fade">
+        <img src="nahida.png" style="width:100%">
+        <div class="caption">纳西妲在新生欢迎会上致辞</div>
+    </div>
 
-    <!-- Initialize Swiper -->
-   <script>
-    var swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
-        paginationClickable: true,
-        spaceBetween: 30,
-        centeredSlides: true,
-        autoplay: 2500,
-        autoplayDisableOnInteraction: false
-    });
-    </script></body>
+    <a class="prev" onclick="plusSlides(-1)">❮</a>
+    <a class="next" onclick="plusSlides(1)">❯</a>
+
+</div>
+    <section>
+        <div class="fullscreen">
+            <h1 class="subheader">学院概览</h1>
+            <div class="grid-container">
+                <div class="grid-item"><img src="Amurta.png" width="20%"><h2 style="margin: 0;">生论派</h2><p style="margin: 0;">Amurta</p></div>
+                <div class="grid-item"><img src="Haravatat.png" width="20%"><h2 style="margin: 0;">知论派</h2><p style="margin: 0;">Haravatat</p></div>
+                <div class="grid-item"><img src="Vahumana.png" width="20%"><h2 style="margin: 0;">因论派</h2>
+                <p style="margin: 0;">Vahumana</p></div>
+                <div class="grid-item"><img src="Kshahrewar.png" width="20%"><h2 style="margin: 0;">妙论派</h2>
+                <p style="margin: 0;">Kshahrewar</p></div>
+                <div class="grid-item"><img src="Rtawahist.png" width="20%"><h2 style="margin: 0;">明论派</h2>
+                <p style="margin: 0;">Rtawahist</p></div>
+                <div class="grid-item"><img src="Spantamad.png" width="20%"><h2 style="margin: 0;">素论派</h2>
+                <p style="margin: 0;">Spantamad</p></div>
+            </div>
+        </div>
+        <div class="project">
+            <h1 class="subheader" style="color: white;">*</h1>
+            <div style="border-bottom: 2px solid#09464b; width: 50%; left: 25%; position: relative;"><h1 class="subheader" style="margin: 30px;">活动一览</h1></div>
+            <div class="imgline">
+                <div class="mask"><h1 class="imgcaption">提纳里教授举办生物学公益讲座</h1></div>
+                <img src="lecture.jpg" width="100%">
+            </div>
+            <div class="imgline">
+                <div class="mask">
+                    <h1 class="imgcaption">校园美食文化节开幕</h1>
+                </div>
+                <img src="dining.png" width="100%">
+            </div>
+            <div class="imgline">
+                <div class="mask">
+                    <h1 class="imgcaption">珐露珊院士完成沙漠实地探测项目</h1>
+                </div>
+                <img src="machine.png" width="100%">
+            </div>
+        </div>
+    </section>
+
+    <div class="footer">
+        <ul>
+            <li style="font-weight: bold;">更多</li>
+            <li>学在须弥</li>
+            <li>生活在须弥</li>
+            <li>须弥就业</li>
+        </ul>
+        <ul>
+            <li style="font-weight: bold;">学生通道</li>
+            <li>意见反馈</li>
+            <li>帮助中心</li>
+        </ul>
+        <ul>
+            <li><img src="Akademiya_Emblem.png" width="48px"></li>
+            <li>Copyright © 2024 Sumeru Akademiya. All rights reserved.</li>
+        </ul>
+        
+        
+    </div>
+
+<script>
+    let slideIndex = 1;
+    let interval = 4000;
+    showSlides(slideIndex);
+    var timer = setInterval(changeSlide, interval);
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+    function changeSlide() {
+        plusSlides(1);
+    }
+    function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        if (n > slides.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = slides.length }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slides[slideIndex - 1].style.display = "block";
+        clearInterval(timer);
+        timer = setInterval(changeSlide, interval);
+    }
+</script>
+</body>
+
 </html>

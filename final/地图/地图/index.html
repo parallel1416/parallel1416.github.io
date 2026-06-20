@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <!-- 创建一个根元素 -->
+    <div class="home" id="app">
+
+        <el-menu :default-active="active_index" class="el-menu-demo" mode="horizontal" @select="handleSelect"
+            background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+            <el-menu-item index="1">你好啊</el-menu-item>
+            <el-submenu index="2">
+                <template slot="title">你也好啊</template>
+                <el-menu-item index="2-1">选项1</el-menu-item>
+                <el-menu-item index="2-2">选项2</el-menu-item>
+                <el-menu-item index="2-3">选项3</el-menu-item>
+                <el-submenu index="2-4">
+                    <template slot="title">选项4</template>
+                    <el-menu-item index="2-4-1">选项1</el-menu-item>
+                    <el-menu-item index="2-4-2">选项2</el-menu-item>
+                    <el-menu-item index="2-4-3">选项3</el-menu-item>
+                </el-submenu>
+            </el-submenu>
+            <el-menu-item index="3">大家都好</el-menu-item>
+
+        </el-menu>
+
+        <div class="main">
+            <div class="left-bar">
+                <el-menu style="width: 100%;" default-active="1" class="el-menu-vertical-demo" @open="handleOpen"
+                    @close="handleClose">
+                    <el-menu-item index="1">
+                        <span slot="title">选项一</span>
+                    </el-menu-item>
+                    <el-menu-item index="2">
+                        <span slot="title">选项二</span>
+                    </el-menu-item>
+                    <el-menu-item index="3">
+                        <span slot="title">选项三</span>
+                    </el-menu-item>
+                    <el-menu-item index="4">
+                        <span slot="title">选项四</span>
+                    </el-menu-item>
+                </el-menu>
+                <div class="toggle-button">
+                    <button id="popular-btn" class="active">Popular</button>
+                    <button id="recent-btn">Recent</button>
+                </div>
+            </div>
+            <div style="width: 85%;position: relative;">
+                <div class="game-main">
+                    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.3.8/build/spline-viewer.js"></script>
+                    <spline-viewer url="https://prod.spline.design/YTO92Ltt0MFJ5TGM/scene.splinecode"></spline-viewer>
+                </div>
+                <div class="bottom-line">
+                    <div class="timeline-labels">
+                        <span>2000</span>
+                        <span>2005</span>
+                        <span>2010</span>
+                        <span>2015</span>
+                        <span>2020</span>
+                        <span>2023</span>
+                    </div>
+                    <input type="range" min="0" max="100" value="0" class="timeline-slider">
+
+                </div>
+                <div class="right-line">
+                    <el-slider style="height: 100%;" v-model="zoom_value" vertical>
+                    </el-slider>
+                </div>
+                <div class="toggle-button right">
+                    <button id="2d-btn" class="active">2D</button>
+                    <button id="3d-btn">3D</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: function () {
+                return {
+                    time_value: 0,
+                    zoom_value: 0,
+                    change_mode: true,
+                    change_view: true,
+                    active_index: "1"
+                }
+            },
+            methods: {
+                handleSelect(key, keyPath) {
+                    console.log(key, keyPath);
+                },
+                handleOpen(key, keyPath) {
+                    console.log(key, keyPath);
+                },
+                handleClose(key, keyPath) {
+                    console.log(key, keyPath);
+                }
+            }
+        })
+        const popularBtn = document.getElementById('popular-btn');
+        const recentBtn = document.getElementById('recent-btn');
+        const tdBtn = document.getElementById('2d-btn');
+        const sdBtn = document.getElementById('3d-btn');
+
+        popularBtn.addEventListener('click', function () {
+            popularBtn.classList.add('active');
+            recentBtn.classList.remove('active');
+        
+        });
+
+        recentBtn.addEventListener('click', function () {
+            recentBtn.classList.add('active');
+            popularBtn.classList.remove('active');
+            
+        });
+        tdBtn.addEventListener('click', function () {
+            tdBtn.classList.add('active');
+            sdBtn.classList.remove('active');
+        
+        });
+
+        sdBtn.addEventListener('click', function () {
+            sdBtn.classList.add('active');
+            tdBtn.classList.remove('active');
+            
+        });
+
+    </script>
+</body>
+
+</html>
